@@ -6,7 +6,6 @@ import com.maxim.dto.TransactionRequestDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -52,12 +51,12 @@ public class AppTest {
 		assertTransactionStatistic(0, expectedZeroValue, expectedZeroValue, expectedZeroValue);
 	}
 
-	private ResponseEntity<Void> sendTransactionRequest(final double amount, final Instant timestamp) {
+	private void sendTransactionRequest(final double amount, final Instant timestamp) {
 		final TransactionRequestDto transactionRequestDto = new TransactionRequestDto();
 		transactionRequestDto.setAmount(amount);
 		transactionRequestDto.setTimestamp(timestamp);
 
-		return transactionController.recordTransaction(transactionRequestDto);
+		transactionController.recordTransaction(transactionRequestDto);
 	}
 
 	// One might argue it's a bad idea to abstract such thing however it does reduces lines of code
