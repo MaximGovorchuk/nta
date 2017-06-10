@@ -52,8 +52,6 @@ public class TransactionService {
 		try {
 			reentrantLock.lock();
 
-			removeTransactionsOlderThan60Seconds();
-
 			count++;
 			sum += transaction.getAmount();
 			max.add(transaction);

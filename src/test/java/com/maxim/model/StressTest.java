@@ -93,6 +93,10 @@ public class StressTest {
 
 		} while (!secondBatchTasks.isEmpty());
 
+		while (transactionController.getStatistic().getCount() != numberOfTransactions) {
+			TimeUnit.SECONDS.sleep(1);
+		}
+
 		assertTransactionStatistic((long) numberOfTransactions, (double) nextTransactionAmount.get() - 1, (double) secondBatchInitialTransactionAmountValue, expectedSumAfterSecondBatch);
 	}
 
